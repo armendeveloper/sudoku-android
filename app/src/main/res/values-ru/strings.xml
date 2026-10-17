@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">Судоку</string>
+
+    <string name="new_game">Новая игра</string>
+    <string name="more_options">Ещё</string>
+    <string name="fill_all_notes">Заполнить все заметки</string>
+    <string name="clear_all_notes">Очистить все заметки</string>
+    <string name="restart_puzzle">Начать заново</string>
+    <string name="language">Язык</string>
+    <string name="language_system">Как в системе</string>
+
+    <string name="mistakes_count">Ошибки: %1$d</string>
+    <string name="pause">Пауза</string>
+    <string name="resume">Продолжить</string>
+    <string name="paused">Пауза</string>
+    <string name="creating_puzzle">Создаём головоломку…</string>
+    <string name="board_description">Поле судоку</string>
+
+    <string name="action_undo">Отменить</string>
+    <string name="action_erase">Стереть</string>
+    <string name="action_notes">Заметки</string>
+    <string name="action_notes_on">Заметки ✓</string>
+    <string name="action_hint">Подсказка</string>
+    <string name="action_solve">Решить</string>
+    <string name="dismiss_hint">Скрыть подсказку</string>
+    <string name="start_new_game">Начать новую игру</string>
+
+    <string name="start">Начать</string>
+    <string name="cancel">Отмена</string>
+
+    <string name="difficulty_easy">Лёгкий</string>
+    <string name="difficulty_medium">Средний</string>
+    <string name="difficulty_hard">Сложный</string>
+    <string name="difficulty_expert">Эксперт</string>
+    <string name="difficulty_easy_blurb">Спокойно — отлично для разминки</string>
+    <string name="difficulty_medium_blurb">Сбалансированная задача</string>
+    <string name="difficulty_hard_blurb">Придётся хорошо подумать</string>
+    <string name="difficulty_expert_blurb">Для мастеров судоку</string>
+
+    <string name="solve_title">Решить головоломку?</string>
+    <string name="solve_text">Все оставшиеся клетки будут заполнены правильными числами, и игра завершится.</string>
+    <string name="solve_confirm">Решить</string>
+    <string name="keep_playing">Играть дальше</string>
+
+    <string name="won_title">Головоломка решена!</string>
+    <string name="won_text">Отлично! Вы решили головоломку уровня «%1$s».</string>
+    <string name="solved_title">Решено</string>
+    <string name="solved_text">Вот полное решение. Попробуете ещё одну?</string>
+    <string name="stat_time">Время</string>
+    <string name="stat_mistakes">Ошибки</string>
+    <string name="stat_hints">Подсказки</string>
+    <string name="view_board">Посмотреть поле</string>
+
+    <string name="hint_fix_mistake">Здесь ошибка: %1$d не подходит. Правильное число — %2$d.</string>
+    <string name="hint_naked_single">Сюда подходит только %1$d — остальные числа уже есть в строке, столбце или блоке.</string>
+    <string name="hint_hidden_row">В строке %2$d для числа %1$d есть только одно место — здесь.</string>
+    <string name="hint_hidden_column">В столбце %2$d для числа %1$d есть только одно место — здесь.</string>
+    <string name="hint_hidden_box">В этом блоке для числа %1$d есть только одно место — здесь.</string>
+    <string name="hint_reveal">Простых ходов сейчас нет, поэтому вот подсказка: %1$d.</string>
+</resources>

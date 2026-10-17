@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">Սուդոկու</string>
+
+    <string name="new_game">Նոր խաղ</string>
+    <string name="more_options">Այլ ընտրանքներ</string>
+    <string name="fill_all_notes">Լրացնել բոլոր նշումները</string>
+    <string name="clear_all_notes">Ջնջել բոլոր նշումները</string>
+    <string name="restart_puzzle">Սկսել նորից</string>
+    <string name="language">Լեզու</string>
+    <string name="language_system">Համակարգի լեզուն</string>
+
+    <string name="mistakes_count">Սխալներ՝ %1$d</string>
+    <string name="pause">Դադար</string>
+    <string name="resume">Շարունակել</string>
+    <string name="paused">Դադար</string>
+    <string name="creating_puzzle">Ստեղծում ենք գլուխկոտրուկը…</string>
+    <string name="board_description">Սուդոկուի դաշտ</string>
+
+    <string name="action_undo">Հետարկել</string>
+    <string name="action_erase">Ջնջել</string>
+    <string name="action_notes">Նշումներ</string>
+    <string name="action_notes_on">Նշումներ ✓</string>
+    <string name="action_hint">Հուշում</string>
+    <string name="action_solve">Լուծել</string>
+    <string name="dismiss_hint">Փակել հուշումը</string>
+    <string name="start_new_game">Սկսել նոր խաղ</string>
+
+    <string name="start">Սկսել</string>
+    <string name="cancel">Չեղարկել</string>
+
+    <string name="difficulty_easy">Հեշտ</string>
+    <string name="difficulty_medium">Միջին</string>
+    <string name="difficulty_hard">Բարդ</string>
+    <string name="difficulty_expert">Փորձագետ</string>
+    <string name="difficulty_easy_blurb">Հանգիստ՝ տաքանալու համար</string>
+    <string name="difficulty_medium_blurb">Հավասարակշռված մարտահրավեր</string>
+    <string name="difficulty_hard_blurb">Պահանջում է ուշադիր մտածել</string>
+    <string name="difficulty_expert_blurb">Սուդոկուի վարպետների համար</string>
+
+    <string name="solve_title">Լուծե՞լ գլուխկոտրուկը</string>
+    <string name="solve_text">Բոլոր մնացած վանդակները կլրացվեն ճիշտ թվերով, և խաղը կավարտվի։</string>
+    <string name="solve_confirm">Լուծել</string>
+    <string name="keep_playing">Շարունակել խաղը</string>
+
+    <string name="won_title">Գլուխկոտրուկը լուծված է</string>
+    <string name="won_text">Հիանալի է։ Դուք լուծեցիք «%1$s» մակարդակի գլուխկոտրուկը։</string>
+    <string name="solved_title">Լուծված է</string>
+    <string name="solved_text">Ահա ամբողջական լուծումը։ Կփորձե՞ք ևս մեկը։</string>
+    <string name="stat_time">Ժամանակ</string>
+    <string name="stat_mistakes">Սխալներ</string>
+    <string name="stat_hints">Հուշումներ</string>
+    <string name="view_board">Դիտել դաշտը</string>
+
+    <string name="hint_fix_mistake">Այստեղ սխալ կա․ %1$d թիվը չի համապատասխանում։ Ճիշտ թիվն է՝ %2$d։</string>
+    <string name="hint_naked_single">Այստեղ հնարավոր է միայն %1$d․ մյուս թվերն արդեն կան տողում, սյունակում կամ բլոկում։</string>
+    <string name="hint_hidden_row">Տող %2$d․ %1$d թիվը կարող է լինել միայն այստեղ։</string>
+    <string name="hint_hidden_column">Սյունակ %2$d․ %1$d թիվը կարող է լինել միայն այստեղ։</string>
+    <string name="hint_hidden_box">Այս բլոկում %1$d թիվը կարող է լինել միայն այստեղ։</string>
+    <string name="hint_reveal">Հեշտ քայլ հիմա չկա, ահա հուշում՝ %1$d։</string>
+</resources>

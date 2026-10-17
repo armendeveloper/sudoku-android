@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">Sudoku</string>
+
+    <string name="new_game">New game</string>
+    <string name="more_options">More options</string>
+    <string name="fill_all_notes">Fill all notes</string>
+    <string name="clear_all_notes">Clear all notes</string>
+    <string name="restart_puzzle">Restart puzzle</string>
+    <string name="language">Language</string>
+    <string name="language_system">System default</string>
+
+    <string name="mistakes_count">Mistakes: %1$d</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Resume</string>
+    <string name="paused">Paused</string>
+    <string name="creating_puzzle">Creating your puzzle…</string>
+    <string name="board_description">Sudoku board</string>
+
+    <string name="action_undo">Undo</string>
+    <string name="action_erase">Erase</string>
+    <string name="action_notes">Notes</string>
+    <string name="action_notes_on">Notes on</string>
+    <string name="action_hint">Hint</string>
+    <string name="action_solve">Solve</string>
+    <string name="dismiss_hint">Dismiss hint</string>
+    <string name="start_new_game">Start a new game</string>
+
+    <string name="start">Start</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="difficulty_easy">Easy</string>
+    <string name="difficulty_medium">Medium</string>
+    <string name="difficulty_hard">Hard</string>
+    <string name="difficulty_expert">Expert</string>
+    <string name="difficulty_easy_blurb">Relaxed — great for warming up</string>
+    <string name="difficulty_medium_blurb">A balanced challenge</string>
+    <string name="difficulty_hard_blurb">Needs careful thinking</string>
+    <string name="difficulty_expert_blurb">For Sudoku masters</string>
+
+    <string name="solve_title">Solve this puzzle?</string>
+    <string name="solve_text">All remaining cells will be filled in with the correct numbers, and this game will end.</string>
+    <string name="solve_confirm">Solve it</string>
+    <string name="keep_playing">Keep playing</string>
+
+    <string name="won_title">Puzzle complete!</string>
+    <string name="won_text">Great job — you solved a %1$s puzzle.</string>
+    <string name="solved_title">Solved</string>
+    <string name="solved_text">Here\'s the full solution. Try another one?</string>
+    <string name="stat_time">Time</string>
+    <string name="stat_mistakes">Mistakes</string>
+    <string name="stat_hints">Hints used</string>
+    <string name="view_board">View board</string>
+
+    <string name="hint_fix_mistake">That %1$d was a mistake — the correct number here is %2$d.</string>
+    <string name="hint_naked_single">Only %1$d fits here — the other numbers are already in its row, column or box.</string>
+    <string name="hint_hidden_row">%1$d has only one possible spot in row %2$d — right here.</string>
+    <string name="hint_hidden_column">%1$d has only one possible spot in column %2$d — right here.</string>
+    <string name="hint_hidden_box">%1$d has only one possible spot in this box — right here.</string>
+    <string name="hint_reveal">No easy move right now, so here\'s a free one: %1$d.</string>
+</resources>
