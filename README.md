@@ -6,6 +6,11 @@ A clean, friendly Sudoku game with smart hints, auto-solve, and English, Armenia
 |:---:|:---:|:---:|:---:|
 | <img src="docs/screenshots/main.png" width="200"> | <img src="docs/screenshots/hint.png" width="200"> | <img src="docs/screenshots/dark.png" width="200"> | <img src="docs/screenshots/armenian.png" width="200"> |
 
+## Download
+**[⬇ Download the latest APK](https://github.com/armendeveloper/sudoku-android/releases/latest/download/Sudoku.apk)** (Android 8.0+), or see all [releases](https://github.com/armendeveloper/sudoku-android/releases).
+
+To install, open the file on your phone and allow installs from that source when Android asks. Play Protect may warn that the app isn't from the Play Store. Tap **Install anyway**.
+
 ## Features
 - Fresh puzzle every game, with a guaranteed unique solution. Four levels: Easy, Medium, Hard, Expert.
 - Smart **Hint**: it fixes a mistake first, then looks for a cell where only one number fits, or a number with only one possible spot. It explains why in plain words.
