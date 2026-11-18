@@ -32,10 +32,10 @@
     <string name="difficulty_medium">Միջին</string>
     <string name="difficulty_hard">Բարդ</string>
     <string name="difficulty_expert">Փորձագետ</string>
-    <string name="difficulty_easy_blurb">Հանգիստ՝ տաքանալու համար</string>
-    <string name="difficulty_medium_blurb">Հավասարակշռված մարտահրավեր</string>
-    <string name="difficulty_hard_blurb">Պահանջում է ուշադիր մտածել</string>
-    <string name="difficulty_expert_blurb">Սուդոկուի վարպետների համար</string>
+    <string name="difficulty_easy_blurb">Շատ բաց թվեր։ Միայն պարզ քայլեր։</string>
+    <string name="difficulty_medium_blurb">Ավելի քիչ բաց թվեր։ Քայլերը դեռ պարզ են։</string>
+    <string name="difficulty_hard_blurb">Պետք են զույգեր և ուղղորդող խմբեր։</string>
+    <string name="difficulty_expert_blurb">Պետք են բարդ հնարքներ, օրինակ՝ X-Wing։</string>
 
     <string name="solve_title">Լուծե՞լ գլուխկոտրուկը</string>
     <string name="solve_text">Բոլոր մնացած վանդակները կլրացվեն ճիշտ թվերով, և խաղը կավարտվի։</string>
@@ -57,4 +57,108 @@
     <string name="hint_hidden_column">Սյունակ %2$d․ %1$d թիվը կարող է լինել միայն այստեղ։</string>
     <string name="hint_hidden_box">Այս բլոկում %1$d թիվը կարող է լինել միայն այստեղ։</string>
     <string name="hint_reveal">Հեշտ քայլ հիմա չկա, ահա հուշում՝ %1$d։</string>
+
+    <string name="statistics">Վիճակագրություն</string>
+    <string name="settings">Կարգավորումներ</string>
+    <string name="back">Հետ</string>
+    <string name="action_redo">Կրկնել</string>
+    <string name="dismiss">Փակել</string>
+    <string name="mistakes_count_limit">Սխալներ՝ %1$d/%2$d</string>
+    <string name="notice_board_full_wrong">Դաշտը լցված է, բայց որոշ թվեր սխալ են։ Փնտրեք սխալը։</string>
+
+    <string name="daily_challenge">Օրվա խնդիր</string>
+    <string name="daily_chip">Օրվա խնդիր · %1$s</string>
+    <string name="daily_subtitle">%1$s · %2$s</string>
+    <string name="daily_play">Խաղալ</string>
+    <string name="daily_continue">Շարունակել</string>
+    <string name="daily_done">Լուծված է</string>
+    <string name="or_pick_level">Կամ ընտրեք մակարդակը</string>
+    <string name="daily_won_text">Դուք լուծեցիք օրվա խնդիրը (%1$s)։</string>
+    <string name="daily_explainer">Ամեն օր՝ նոր գլուխկոտրուկ։ Շաբաթվա ընթացքում այն բարդանում է․ երկուշաբթի և երեքշաբթի՝ հեշտ, չորեքշաբթի և հինգշաբթի՝ միջին, ուրբաթ և շաբաթ՝ բարդ, կիրակի՝ փորձագետի մակարդակ։</string>
+    <plurals name="daily_streak">
+        <item quantity="one">Շարք՝ %d օր</item>
+        <item quantity="other">Շարք՝ %d օր</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d օր</item>
+        <item quantity="other">%d օր</item>
+    </plurals>
+
+    <string name="lost_title">Չափազանց շատ սխալներ</string>
+    <plurals name="lost_text">
+        <item quantity="one">Սխալներ՝ %d։ Փորձեք այս գլուխկոտրուկը նորից կամ սկսեք նորը։</item>
+        <item quantity="other">Սխալներ՝ %d։ Փորձեք այս գլուխկոտրուկը նորից կամ սկսեք նորը։</item>
+    </plurals>
+    <string name="try_again">Կրկին փորձել</string>
+    <string name="new_best_time">Նոր լավագույն ժամանակ</string>
+
+    <string name="stats_none">—</string>
+    <string name="stats_played">Խաղացված</string>
+    <string name="stats_won">Հաղթանակներ</string>
+    <string name="stats_win_rate">Հաղթանակների տոկոս</string>
+    <string name="stats_perfect">Անթերի խաղեր</string>
+    <string name="stats_best_time">Լավագույն ժամանակ</string>
+    <string name="stats_average_time">Միջին ժամանակ</string>
+    <string name="stats_current_streak">Ընթացիկ շարք</string>
+    <string name="stats_best_streak">Լավագույն շարք</string>
+    <string name="stats_note">Լավագույն ժամանակը հաշվվում է միայն առանց հուշումների հաղթած խաղերի համար։ Անթերի խաղն առանց սխալների և հուշումների է։</string>
+    <string name="stats_days_completed">Լուծված օրեր</string>
+    <string name="stats_daily_streak">Օրերի շարք</string>
+    <string name="stats_best_daily_streak">Օրերի լավագույն շարք</string>
+    <string name="reset_stats_title">Զրոյացնել վիճակագրությունը</string>
+    <string name="reset_stats_text">Բոլոր արդյունքները, շարքերը և լավագույն ժամանակները կջնջվեն։ Սա հնարավոր չէ հետարկել։</string>
+    <string name="reset">Զրոյացնել</string>
+
+    <string name="settings_appearance">Արտաքին տեսք</string>
+    <string name="theme">Թեմա</string>
+    <string name="theme_system">Համակարգային</string>
+    <string name="theme_light">Բաց</string>
+    <string name="theme_dark">Մուգ</string>
+    <string name="settings_gameplay">Խաղ</string>
+    <string name="setting_show_mistakes">Ցույց տալ սխալները</string>
+    <string name="setting_show_mistakes_desc">Սխալ թվերը միանգամից նշել կարմիրով և հաշվել որպես սխալ։</string>
+    <string name="setting_mistake_limit">Սխալների սահմանաչափ</string>
+    <plurals name="setting_mistake_limit_desc">
+        <item quantity="one">Խաղն ավարտվում է %d սխալից հետո։</item>
+        <item quantity="other">Խաղն ավարտվում է %d սխալից հետո։</item>
+    </plurals>
+    <string name="setting_mistake_limit_needs">Միացրեք «Ցույց տալ սխալները»՝ սա օգտագործելու համար։</string>
+    <string name="setting_auto_remove_notes">Նշումների ավտոմատ ջնջում</string>
+    <string name="setting_auto_remove_notes_desc">Թիվը տեղադրելիս այն ջնջվում է նույն տողի, սյունակի և բլոկի նշումներից։</string>
+    <string name="setting_highlight_peers">Ընդգծել տողը, սյունակը և բլոկը</string>
+    <string name="setting_highlight_same">Ընդգծել նույն թվերը</string>
+    <string name="setting_show_timer">Ցույց տալ ժամաչափը</string>
+    <string name="setting_haptics">Թրթռում</string>
+
+    <string name="technique_naked_single">Միակ թեկնածու</string>
+    <string name="technique_hidden_single">Թաքնված միակ</string>
+    <string name="technique_pointing">Ուղղորդող խումբ</string>
+    <string name="technique_claiming">Գիծ և բլոկ</string>
+    <string name="technique_naked_pair">Բաց զույգ</string>
+    <string name="technique_hidden_pair">Թաքնված զույգ</string>
+    <string name="technique_naked_triple">Բաց եռյակ</string>
+    <string name="technique_hidden_triple">Թաքնված եռյակ</string>
+    <string name="technique_x_wing">X-Wing</string>
+    <string name="technique_xy_wing">XY-Wing</string>
+    <string name="technique_swordfish">Swordfish</string>
+
+    <string name="house_row">տող %1$d</string>
+    <string name="house_column">սյունակ %1$d</string>
+    <string name="house_box">բլոկ %1$d</string>
+
+    <string name="step_pointing">%1$s․ %2$d թիվը կարող է լինել միայն մեկ գծում (%3$s), ուստի այդ գծի մյուս վանդակներում %2$d լինել չի կարող։</string>
+    <string name="step_claiming">%1$s․ %2$d թիվը կարող է լինել միայն մեկ բլոկում (%3$s), ուստի այդ բլոկի մյուս վանդակներում %2$d լինել չի կարող։</string>
+    <string name="step_naked_pair">%1$s․ երկու վանդակում կարող են լինել միայն %2$d կամ %3$d, ուստի այստեղ մյուս վանդակներում այդ թվերը լինել չեն կարող։</string>
+    <string name="step_naked_triple">%1$s․ երեք վանդակում կարող են լինել միայն %2$d, %3$d կամ %4$d, ուստի այստեղ մյուս վանդակներում այդ թվերը լինել չեն կարող։</string>
+    <string name="step_hidden_pair">%1$s․ %2$d և %3$d թվերը տեղավորվում են միայն նույն երկու վանդակներում, ուստի այդ վանդակներում այլ թվեր լինել չեն կարող։</string>
+    <string name="step_hidden_triple">%1$s․ %2$d, %3$d և %4$d թվերը տեղավորվում են միայն նույն երեք վանդակներում, ուստի այդ վանդակներում այլ թվեր լինել չեն կարող։</string>
+    <string name="step_x_wing_rows">%1$d և %2$d տողերում %3$d թիվը կարող է լինել միայն %4$d և %5$d սյունակներում, ուստի այդ սյունակների մյուս վանդակներում %3$d լինել չի կարող։</string>
+    <string name="step_x_wing_columns">%1$d և %2$d սյունակներում %3$d թիվը կարող է լինել միայն %4$d և %5$d տողերում, ուստի այդ տողերի մյուս վանդակներում %3$d լինել չի կարող։</string>
+    <string name="step_swordfish_rows">%1$d, %2$d և %3$d տողերում %4$d թիվը կարող է լինել միայն %5$d, %6$d և %7$d սյունակներում, ուստի այդ սյունակների մյուս վանդակներում %4$d լինել չի կարող։</string>
+    <string name="step_swordfish_columns">%1$d, %2$d և %3$d սյունակներում %4$d թիվը կարող է լինել միայն %5$d, %6$d և %7$d տողերում, ուստի այդ տողերի մյուս վանդակներում %4$d լինել չի կարող։</string>
+    <string name="step_xy_wing">Վանդակը, որտեղ կարող է լինել միայն %1$d կամ %2$d, տեսնում է մի վանդակ՝ %1$d կամ %3$d տարբերակներով, և մեկ այլ վանդակ՝ %2$d կամ %3$d տարբերակներով։ Ամեն դեպքում դրանցից մեկում կլինի %3$d, ուստի %3$d չի կարող լինել այն վանդակներում, որոնք տեսնում են երկուսին էլ։</string>
+    <string name="hint_then_naked_single">Այժմ նշված վանդակի համար մնում է միայն %1$d։</string>
+    <string name="hint_then_hidden_single">Այժմ %1$d թվի համար մնում է մեկ տեղ (%2$s)՝ նշված վանդակը։</string>
+    <string name="hint_show_steps">Ցույց տալ քայլերը</string>
+    <string name="hint_hide_steps">Թաքցնել քայլերը</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.armen.sudoku.ui
 
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,6 +20,7 @@ import androidx.compose.material.icons.automirrored.rounded.Undo
 import androidx.compose.material.icons.outlined.AutoFixHigh
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material.icons.outlined.EditNote
+import androidx.compose.material.icons.outlined.ErrorOutline
 import androidx.compose.material.icons.outlined.Lightbulb
 import androidx.compose.material.icons.rounded.Pause
 import androidx.compose.material.icons.rounded.PlayArrow
@@ -29,9 +31,13 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -39,32 +45,50 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.armen.sudoku.engine.Hint
 import com.armen.sudoku.game.GameState
+import com.armen.sudoku.game.Settings
 import com.armen.sudoku.R
 import androidx.compose.ui.res.stringResource
 
 @Composable
-fun StatusRow(game: GameState?, paused: Boolean, canPause: Boolean, onPause: () -> Unit, modifier: Modifier = Modifier) {
+fun StatusRow(
+    game: GameState?,
+    settings: Settings,
+    paused: Boolean,
+    canPause: Boolean,
+    onPause: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
     Row(modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
         Surface(shape = RoundedCornerShape(50), color = MaterialTheme.colorScheme.secondaryContainer) {
+            val level = game?.difficulty?.let { difficultyLabel(it) } ?: "…"
             Text(
-                game?.difficulty?.let { difficultyLabel(it) } ?: "…",
+                if (game?.isDaily == true) stringResource(R.string.daily_chip, level) else level,
                 Modifier.padding(horizontal = 14.dp, vertical = 6.dp),
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.onSecondaryContainer,
             )
         }
         Spacer(Modifier.width(12.dp))
-        Text(
-            stringResource(R.string.mistakes_count, game?.mistakes ?: 0),
-            style = MaterialTheme.typography.bodyMedium,
-            color = if ((game?.mistakes ?: 0) > 0) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant,
-        )
+        if (settings.showMistakes) {
+            val mistakes = game?.mistakes ?: 0
+            Text(
+                if (settings.mistakeLimitActive) {
+                    stringResource(R.string.mistakes_count_limit, mistakes, Settings.MISTAKE_LIMIT)
+                } else {
+                    stringResource(R.string.mistakes_count, mistakes)
+                },
+                style = MaterialTheme.typography.bodyMedium,
+                color = if (mistakes > 0) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
         Spacer(Modifier.weight(1f))
-        Text(
-            formatTime(game?.elapsedSeconds ?: 0),
-            style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
-            color = MaterialTheme.colorScheme.onSurface,
-        )
+        if (settings.showTimer) {
+            Text(
+                formatTime(game?.elapsedSeconds ?: 0),
+                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
+                color = MaterialTheme.colorScheme.onSurface,
+            )
+        }
         IconButton(onClick = onPause, enabled = canPause) {
             Icon(if (paused) Icons.Rounded.PlayArrow else Icons.Rounded.Pause, stringResource(if (paused) R.string.resume else R.string.pause))
         }
@@ -161,11 +185,54 @@ fun HintBanner(hint: Hint, onDismiss: () -> Unit, modifier: Modifier = Modifier)
         shape = RoundedCornerShape(14.dp),
         modifier = modifier.fillMaxWidth(),
     ) {
-        Row(Modifier.padding(start = 14.dp, top = 8.dp, bottom = 8.dp), verticalAlignment = Alignment.CenterVertically) {
-            Icon(Icons.Outlined.Lightbulb, contentDescription = null)
+        Row(Modifier.padding(start = 14.dp, top = 8.dp, bottom = 8.dp)) {
+            Icon(Icons.Outlined.Lightbulb, contentDescription = null, modifier = Modifier.padding(top = 10.dp))
             Spacer(Modifier.width(10.dp))
-            Text(hintMessage(hint), style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(1f))
+            Column(Modifier.weight(1f).padding(vertical = 10.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                if (hint.steps.isEmpty()) {
+                    Text(hintMessage(hint), style = MaterialTheme.typography.bodyMedium)
+                } else {
+                    // Compact by default so the number pad stays in view; the full reasoning is one tap away.
+                    var expanded by rememberSaveable(hint) { mutableStateOf(false) }
+                    Text(
+                        hint.steps.map { it.technique }.distinct().map { techniqueName(it) }.joinToString(" → "),
+                        style = MaterialTheme.typography.labelLarge,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    if (expanded) {
+                        for (step in hint.steps) Text(stepMessage(step), style = MaterialTheme.typography.bodyMedium)
+                    }
+                    Text(hintConclusion(hint), style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.SemiBold)
+                    Text(
+                        stringResource(if (expanded) R.string.hint_hide_steps else R.string.hint_show_steps),
+                        style = MaterialTheme.typography.labelLarge,
+                        color = MaterialTheme.colorScheme.tertiary,
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(8.dp))
+                            .clickable { expanded = !expanded }
+                            .padding(vertical = 4.dp),
+                    )
+                }
+            }
             IconButton(onClick = onDismiss) { Icon(Icons.Outlined.Close, stringResource(R.string.dismiss_hint)) }
+        }
+    }
+}
+
+/** A short message, such as "the board is full but something is wrong". */
+@Composable
+fun NoticeBanner(text: String, onDismiss: () -> Unit, modifier: Modifier = Modifier) {
+    Surface(
+        color = MaterialTheme.colorScheme.errorContainer,
+        contentColor = MaterialTheme.colorScheme.onErrorContainer,
+        shape = RoundedCornerShape(14.dp),
+        modifier = modifier.fillMaxWidth(),
+    ) {
+        Row(Modifier.padding(start = 14.dp, top = 4.dp, bottom = 4.dp), verticalAlignment = Alignment.CenterVertically) {
+            Icon(Icons.Outlined.ErrorOutline, contentDescription = null)
+            Spacer(Modifier.width(10.dp))
+            Text(text, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(1f))
+            IconButton(onClick = onDismiss) { Icon(Icons.Outlined.Close, stringResource(R.string.dismiss)) }
         }
     }
 }

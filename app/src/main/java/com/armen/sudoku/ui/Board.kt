@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
@@ -15,6 +16,7 @@ import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextLayoutResult
@@ -23,26 +25,44 @@ import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.dp
-import com.armen.sudoku.engine.Sudoku
-import com.armen.sudoku.game.UiState
 import com.armen.sudoku.R
-import androidx.compose.ui.res.stringResource
+import com.armen.sudoku.engine.Sudoku
+import com.armen.sudoku.game.Settings
+import com.armen.sudoku.game.UiState
+import kotlin.math.PI
+import kotlin.math.abs
+import kotlin.math.max
+import kotlin.math.sin
 
 private val BoardShape = RoundedCornerShape(14.dp)
 
+/** A wave of color that spreads out from [origin] over [cells], e.g. when a row is completed. */
+@Immutable
+data class Flash(val cells: Set<Int>, val origin: Int, val id: Long)
+
 /**
  * The 9x9 grid, drawn on a single canvas. Highlights, from strongest to weakest:
- * hinted cell, selected cell, wrong entries, same digit as the selection, and the
- * selection's row/column/box.
+ * hinted cell, selected cell, wrong entries, cells of the hint's pattern, same digit as the
+ * selection, and the selection's row/column/box. [flashProgress] (0..1) animates [flash].
  */
 @Composable
-fun SudokuBoard(state: UiState, onCellTap: (Int) -> Unit, modifier: Modifier = Modifier) {
+fun SudokuBoard(
+    state: UiState,
+    settings: Settings,
+    onCellTap: (Int) -> Unit,
+    modifier: Modifier = Modifier,
+    flash: Flash? = null,
+    flashProgress: () -> Float = { 1f },
+) {
     val game = state.game
     val colors = MaterialTheme.colorScheme
     val textMeasurer = rememberTextMeasurer(cacheSize = 32)
     val selected = state.selected
-    val selectedValue = selected?.let { game?.values?.get(it) }?.takeIf { it != 0 }
+    val selectedValue = selected?.let { game?.values?.get(it) }?.takeIf { it != 0 && settings.highlightSameNumbers }
     val hintCell = state.hint?.cell
+    val patternCells = state.hint?.patternCells.orEmpty()
+    val showMistakes = settings.showMistakes
+    val highlightPeers = settings.highlightPeers
     val thickLine = colors.onSurface.copy(alpha = 0.78f)
     val currentOnCellTap by rememberUpdatedState(onCellTap)
     val description = stringResource(R.string.board_description)
@@ -75,17 +95,31 @@ fun SudokuBoard(state: UiState, onCellTap: (Int) -> Unit, modifier: Modifier = M
                 onDrawBehind {
                     drawRect(colors.surface)
                     if (game == null) return@onDrawBehind
+                    fun wrong(cell: Int) = showMistakes && game.isWrong(cell)
 
                     for (cell in 0 until Sudoku.CELLS) {
                         val bg = when {
                             cell == hintCell -> colors.tertiaryContainer
                             cell == selected -> colors.primary.copy(alpha = 0.34f)
-                            game.isWrong(cell) -> colors.errorContainer.copy(alpha = 0.75f)
+                            wrong(cell) -> colors.errorContainer.copy(alpha = 0.75f)
+                            cell in patternCells -> colors.tertiaryContainer.copy(alpha = 0.55f)
                             selectedValue != null && game.values[cell] == selectedValue -> colors.primary.copy(alpha = 0.2f)
-                            selected != null && isPeer(selected, cell) -> colors.primary.copy(alpha = 0.075f)
+                            highlightPeers && selected != null && isPeer(selected, cell) -> colors.primary.copy(alpha = 0.075f)
                             else -> null
                         } ?: continue
                         drawRect(bg, Offset(Sudoku.col(cell) * cs, Sudoku.row(cell) * cs), Size(cs, cs))
+                    }
+
+                    if (flash != null) {
+                        // Reading the progress here (not in composition) redraws without recomposing.
+                        val p = flashProgress()
+                        for (cell in flash.cells) {
+                            val dist = max(abs(Sudoku.row(cell) - Sudoku.row(flash.origin)), abs(Sudoku.col(cell) - Sudoku.col(flash.origin)))
+                            val local = (p - dist * FLASH_STAGGER) / FLASH_PULSE
+                            if (local <= 0f || local >= 1f) continue
+                            val alpha = sin(PI * local).toFloat() * 0.45f
+                            drawRect(colors.primary.copy(alpha = alpha), Offset(Sudoku.col(cell) * cs, Sudoku.row(cell) * cs), Size(cs, cs))
+                        }
                     }
 
                     for (i in 1..8) {
@@ -108,7 +142,7 @@ fun SudokuBoard(state: UiState, onCellTap: (Int) -> Unit, modifier: Modifier = M
                             val layout = if (game.isGiven(cell)) givenDigits[v] else userDigits[v]
                             val color = when {
                                 game.isGiven(cell) -> colors.onSurface
-                                game.isWrong(cell) -> colors.error
+                                wrong(cell) -> colors.error
                                 else -> colors.primary
                             }
                             drawText(
@@ -138,6 +172,10 @@ fun SudokuBoard(state: UiState, onCellTap: (Int) -> Unit, modifier: Modifier = M
             },
     )
 }
+
+/** Delay per cell of distance from the origin, and how long each cell glows, as fractions of the animation. */
+private const val FLASH_STAGGER = 0.06f
+private const val FLASH_PULSE = 0.35f
 
 private fun isPeer(a: Int, b: Int) =
     Sudoku.row(a) == Sudoku.row(b) || Sudoku.col(a) == Sudoku.col(b) || Sudoku.box(a) == Sudoku.box(b)

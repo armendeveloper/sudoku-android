@@ -18,6 +18,8 @@ class GameStorage(context: Context) {
         putInt(KEY_HINTS, game.hintsUsed)
         putLong(KEY_ELAPSED, game.elapsedSeconds)
         putString(KEY_STATUS, game.status.name)
+        putLong(KEY_DAILY, game.dailyDay ?: NO_DAILY)
+        putBoolean(KEY_COUNTED, game.counted)
     }
 
     fun load(): GameState? = runCatching {
@@ -32,6 +34,9 @@ class GameStorage(context: Context) {
             hintsUsed = prefs.getInt(KEY_HINTS, 0),
             elapsedSeconds = prefs.getLong(KEY_ELAPSED, 0),
             status = GameStatus.valueOf(prefs.getString(KEY_STATUS, null)!!),
+            // Saves from version 1.0 have neither key, and default to a regular, uncounted game.
+            dailyDay = prefs.getLong(KEY_DAILY, NO_DAILY).takeIf { it != NO_DAILY },
+            counted = prefs.getBoolean(KEY_COUNTED, false),
         )
     }.getOrNull()
 
@@ -48,5 +53,8 @@ class GameStorage(context: Context) {
         const val KEY_HINTS = "hints"
         const val KEY_ELAPSED = "elapsed"
         const val KEY_STATUS = "status"
+        const val KEY_DAILY = "daily_day"
+        const val KEY_COUNTED = "counted"
+        const val NO_DAILY = Long.MIN_VALUE
     }
 }

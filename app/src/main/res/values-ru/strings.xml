@@ -32,10 +32,10 @@
     <string name="difficulty_medium">Средний</string>
     <string name="difficulty_hard">Сложный</string>
     <string name="difficulty_expert">Эксперт</string>
-    <string name="difficulty_easy_blurb">Спокойно — отлично для разминки</string>
-    <string name="difficulty_medium_blurb">Сбалансированная задача</string>
-    <string name="difficulty_hard_blurb">Придётся хорошо подумать</string>
-    <string name="difficulty_expert_blurb">Для мастеров судоку</string>
+    <string name="difficulty_easy_blurb">Много открытых цифр. Только простые ходы.</string>
+    <string name="difficulty_medium_blurb">Меньше открытых цифр. Ходы всё ещё простые.</string>
+    <string name="difficulty_hard_blurb">Нужны пары и указывающие группы.</string>
+    <string name="difficulty_expert_blurb">Нужны сложные приёмы, например X-Wing.</string>
 
     <string name="solve_title">Решить головоломку?</string>
     <string name="solve_text">Все оставшиеся клетки будут заполнены правильными числами, и игра завершится.</string>
@@ -57,4 +57,116 @@
     <string name="hint_hidden_column">В столбце %2$d для числа %1$d есть только одно место — здесь.</string>
     <string name="hint_hidden_box">В этом блоке для числа %1$d есть только одно место — здесь.</string>
     <string name="hint_reveal">Простых ходов сейчас нет, поэтому вот подсказка: %1$d.</string>
+
+    <string name="statistics">Статистика</string>
+    <string name="settings">Настройки</string>
+    <string name="back">Назад</string>
+    <string name="action_redo">Повторить</string>
+    <string name="dismiss">Закрыть</string>
+    <string name="mistakes_count_limit">Ошибки: %1$d/%2$d</string>
+    <string name="notice_board_full_wrong">Поле заполнено, но некоторые числа неверны. Поищите ошибку!</string>
+
+    <string name="daily_challenge">Задача дня</string>
+    <string name="daily_chip">Задача дня · %1$s</string>
+    <string name="daily_subtitle">%1$s · %2$s</string>
+    <string name="daily_play">Играть</string>
+    <string name="daily_continue">Продолжить</string>
+    <string name="daily_done">Решено</string>
+    <string name="or_pick_level">Или выберите уровень</string>
+    <string name="daily_won_text">Вы решили задачу дня (%1$s).</string>
+    <string name="daily_explainer">Каждый день новая головоломка. К концу недели она сложнее: в понедельник и вторник лёгкая, в среду и четверг средняя, в пятницу и субботу сложная, в воскресенье экспертная.</string>
+    <plurals name="daily_streak">
+        <item quantity="one">Серия: %d день</item>
+        <item quantity="few">Серия: %d дня</item>
+        <item quantity="many">Серия: %d дней</item>
+        <item quantity="other">Серия: %d дня</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d день</item>
+        <item quantity="few">%d дня</item>
+        <item quantity="many">%d дней</item>
+        <item quantity="other">%d дня</item>
+    </plurals>
+
+    <string name="lost_title">Слишком много ошибок</string>
+    <plurals name="lost_text">
+        <item quantity="one">Ошибок: %d. Попробуйте эту головоломку ещё раз или начните новую.</item>
+        <item quantity="few">Ошибок: %d. Попробуйте эту головоломку ещё раз или начните новую.</item>
+        <item quantity="many">Ошибок: %d. Попробуйте эту головоломку ещё раз или начните новую.</item>
+        <item quantity="other">Ошибок: %d. Попробуйте эту головоломку ещё раз или начните новую.</item>
+    </plurals>
+    <string name="try_again">Ещё раз</string>
+    <string name="new_best_time">Новый рекорд времени!</string>
+
+    <string name="stats_none">—</string>
+    <string name="stats_played">Сыграно игр</string>
+    <string name="stats_won">Побед</string>
+    <string name="stats_win_rate">Доля побед</string>
+    <string name="stats_perfect">Идеальные игры</string>
+    <string name="stats_best_time">Лучшее время</string>
+    <string name="stats_average_time">Среднее время</string>
+    <string name="stats_current_streak">Текущая серия</string>
+    <string name="stats_best_streak">Лучшая серия</string>
+    <string name="stats_note">Лучшее время учитывает только игры без подсказок. Идеальная игра — без ошибок и подсказок.</string>
+    <string name="stats_days_completed">Решено дней</string>
+    <string name="stats_daily_streak">Серия дней</string>
+    <string name="stats_best_daily_streak">Лучшая серия дней</string>
+    <string name="reset_stats_title">Сбросить статистику</string>
+    <string name="reset_stats_text">Все результаты, серии и рекорды будут удалены. Это нельзя отменить.</string>
+    <string name="reset">Сбросить</string>
+
+    <string name="settings_appearance">Оформление</string>
+    <string name="theme">Тема</string>
+    <string name="theme_system">Системная</string>
+    <string name="theme_light">Светлая</string>
+    <string name="theme_dark">Тёмная</string>
+    <string name="settings_gameplay">Игра</string>
+    <string name="setting_show_mistakes">Показывать ошибки</string>
+    <string name="setting_show_mistakes_desc">Сразу выделять неверные числа красным и считать их ошибками.</string>
+    <string name="setting_mistake_limit">Лимит ошибок</string>
+    <plurals name="setting_mistake_limit_desc">
+        <item quantity="one">Игра заканчивается после %d ошибки.</item>
+        <item quantity="few">Игра заканчивается после %d ошибок.</item>
+        <item quantity="many">Игра заканчивается после %d ошибок.</item>
+        <item quantity="other">Игра заканчивается после %d ошибки.</item>
+    </plurals>
+    <string name="setting_mistake_limit_needs">Включите «Показывать ошибки», чтобы использовать лимит.</string>
+    <string name="setting_auto_remove_notes">Автоудаление заметок</string>
+    <string name="setting_auto_remove_notes_desc">Поставленное число удаляется из заметок в той же строке, столбце и блоке.</string>
+    <string name="setting_highlight_peers">Подсвечивать строку, столбец и блок</string>
+    <string name="setting_highlight_same">Подсвечивать одинаковые числа</string>
+    <string name="setting_show_timer">Показывать таймер</string>
+    <string name="setting_haptics">Вибрация</string>
+
+    <string name="technique_naked_single">Единственный кандидат</string>
+    <string name="technique_hidden_single">Скрытый одиночка</string>
+    <string name="technique_pointing">Указывающая группа</string>
+    <string name="technique_claiming">Линия и блок</string>
+    <string name="technique_naked_pair">Открытая пара</string>
+    <string name="technique_hidden_pair">Скрытая пара</string>
+    <string name="technique_naked_triple">Открытая тройка</string>
+    <string name="technique_hidden_triple">Скрытая тройка</string>
+    <string name="technique_x_wing">X-Wing</string>
+    <string name="technique_xy_wing">XY-Wing</string>
+    <string name="technique_swordfish">Рыба-меч (Swordfish)</string>
+
+    <string name="house_row">строка %1$d</string>
+    <string name="house_column">столбец %1$d</string>
+    <string name="house_box">блок %1$d</string>
+
+    <string name="step_pointing">%1$s: число %2$d может стоять только в одной линии (%3$s), поэтому в остальных клетках этой линии %2$d быть не может.</string>
+    <string name="step_claiming">%1$s: число %2$d может стоять только внутри одного блока (%3$s), поэтому в остальных клетках этого блока %2$d быть не может.</string>
+    <string name="step_naked_pair">%1$s: в двух клетках может быть только %2$d или %3$d, поэтому в остальных клетках здесь этих чисел быть не может.</string>
+    <string name="step_naked_triple">%1$s: в трёх клетках может быть только %2$d, %3$d или %4$d, поэтому в остальных клетках здесь этих чисел быть не может.</string>
+    <string name="step_hidden_pair">%1$s: числа %2$d и %3$d помещаются только в одни и те же две клетки, поэтому других чисел в этих клетках быть не может.</string>
+    <string name="step_hidden_triple">%1$s: числа %2$d, %3$d и %4$d помещаются только в одни и те же три клетки, поэтому других чисел в этих клетках быть не может.</string>
+    <string name="step_x_wing_rows">В строках %1$d и %2$d число %3$d может стоять только в столбцах %4$d и %5$d, поэтому в остальных клетках этих столбцов %3$d быть не может.</string>
+    <string name="step_x_wing_columns">В столбцах %1$d и %2$d число %3$d может стоять только в строках %4$d и %5$d, поэтому в остальных клетках этих строк %3$d быть не может.</string>
+    <string name="step_swordfish_rows">В строках %1$d, %2$d и %3$d число %4$d может стоять только в столбцах %5$d, %6$d и %7$d, поэтому в остальных клетках этих столбцов %4$d быть не может.</string>
+    <string name="step_swordfish_columns">В столбцах %1$d, %2$d и %3$d число %4$d может стоять только в строках %5$d, %6$d и %7$d, поэтому в остальных клетках этих строк %4$d быть не может.</string>
+    <string name="step_xy_wing">Клетка, где может быть только %1$d или %2$d, видит клетку с вариантами %1$d или %3$d и клетку с вариантами %2$d или %3$d. В любом случае в одной из них будет %3$d, поэтому %3$d не может стоять в клетках, которые видят обе.</string>
+    <string name="hint_then_naked_single">Теперь для выделенной клетки остаётся только %1$d.</string>
+    <string name="hint_then_hidden_single">Теперь у числа %1$d остаётся одно место (%2$s): выделенная клетка.</string>
+    <string name="hint_show_steps">Показать шаги</string>
+    <string name="hint_hide_steps">Скрыть шаги</string>
 </resources>

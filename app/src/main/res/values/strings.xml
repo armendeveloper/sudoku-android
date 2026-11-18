@@ -32,10 +32,10 @@
     <string name="difficulty_medium">Medium</string>
     <string name="difficulty_hard">Hard</string>
     <string name="difficulty_expert">Expert</string>
-    <string name="difficulty_easy_blurb">Relaxed — great for warming up</string>
-    <string name="difficulty_medium_blurb">A balanced challenge</string>
-    <string name="difficulty_hard_blurb">Needs careful thinking</string>
-    <string name="difficulty_expert_blurb">For Sudoku masters</string>
+    <string name="difficulty_easy_blurb">Lots of clues. Simple moves only.</string>
+    <string name="difficulty_medium_blurb">Fewer clues. Still simple moves.</string>
+    <string name="difficulty_hard_blurb">Needs pairs and pointing.</string>
+    <string name="difficulty_expert_blurb">Needs advanced moves like X-Wing.</string>
 
     <string name="solve_title">Solve this puzzle?</string>
     <string name="solve_text">All remaining cells will be filled in with the correct numbers, and this game will end.</string>
@@ -57,4 +57,108 @@
     <string name="hint_hidden_column">%1$d has only one possible spot in column %2$d — right here.</string>
     <string name="hint_hidden_box">%1$d has only one possible spot in this box — right here.</string>
     <string name="hint_reveal">No easy move right now, so here\'s a free one: %1$d.</string>
+
+    <string name="statistics">Statistics</string>
+    <string name="settings">Settings</string>
+    <string name="back">Back</string>
+    <string name="action_redo">Redo</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="mistakes_count_limit">Mistakes: %1$d/%2$d</string>
+    <string name="notice_board_full_wrong">The board is full, but some numbers are wrong. Keep looking!</string>
+
+    <string name="daily_challenge">Daily challenge</string>
+    <string name="daily_chip">Daily · %1$s</string>
+    <string name="daily_subtitle">%1$s · %2$s</string>
+    <string name="daily_play">Play</string>
+    <string name="daily_continue">Continue</string>
+    <string name="daily_done">Done</string>
+    <string name="or_pick_level">Or pick a level</string>
+    <string name="daily_won_text">You finished today\'s challenge (%1$s).</string>
+    <string name="daily_explainer">A new puzzle every day. It gets harder through the week: Easy on Monday and Tuesday, Medium on Wednesday and Thursday, Hard on Friday and Saturday, Expert on Sunday.</string>
+    <plurals name="daily_streak">
+        <item quantity="one">Streak: %d day</item>
+        <item quantity="other">Streak: %d days</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+
+    <string name="lost_title">Too many mistakes</string>
+    <plurals name="lost_text">
+        <item quantity="one">You made %d mistake. Try this puzzle again, or start a new one.</item>
+        <item quantity="other">You made %d mistakes. Try this puzzle again, or start a new one.</item>
+    </plurals>
+    <string name="try_again">Try again</string>
+    <string name="new_best_time">New best time!</string>
+
+    <string name="stats_none">—</string>
+    <string name="stats_played">Games played</string>
+    <string name="stats_won">Games won</string>
+    <string name="stats_win_rate">Win rate</string>
+    <string name="stats_perfect">Perfect games</string>
+    <string name="stats_best_time">Best time</string>
+    <string name="stats_average_time">Average time</string>
+    <string name="stats_current_streak">Current streak</string>
+    <string name="stats_best_streak">Best streak</string>
+    <string name="stats_note">Best time counts only games won without hints. A perfect game has no mistakes and no hints.</string>
+    <string name="stats_days_completed">Days completed</string>
+    <string name="stats_daily_streak">Daily streak</string>
+    <string name="stats_best_daily_streak">Best daily streak</string>
+    <string name="reset_stats_title">Reset statistics</string>
+    <string name="reset_stats_text">All results, streaks and best times will be deleted. This can\'t be undone.</string>
+    <string name="reset">Reset</string>
+
+    <string name="settings_appearance">Appearance</string>
+    <string name="theme">Theme</string>
+    <string name="theme_system">System</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="settings_gameplay">Gameplay</string>
+    <string name="setting_show_mistakes">Show mistakes</string>
+    <string name="setting_show_mistakes_desc">Mark wrong numbers in red right away and count them as mistakes.</string>
+    <string name="setting_mistake_limit">Mistake limit</string>
+    <plurals name="setting_mistake_limit_desc">
+        <item quantity="one">The game ends after %d mistake.</item>
+        <item quantity="other">The game ends after %d mistakes.</item>
+    </plurals>
+    <string name="setting_mistake_limit_needs">Turn on \"Show mistakes\" to use this.</string>
+    <string name="setting_auto_remove_notes">Auto-remove notes</string>
+    <string name="setting_auto_remove_notes_desc">Placing a number removes it from notes in the same row, column and box.</string>
+    <string name="setting_highlight_peers">Highlight row, column and box</string>
+    <string name="setting_highlight_same">Highlight matching numbers</string>
+    <string name="setting_show_timer">Show timer</string>
+    <string name="setting_haptics">Vibration</string>
+
+    <string name="technique_naked_single">Naked single</string>
+    <string name="technique_hidden_single">Hidden single</string>
+    <string name="technique_pointing">Pointing</string>
+    <string name="technique_claiming">Box/line reduction</string>
+    <string name="technique_naked_pair">Naked pair</string>
+    <string name="technique_hidden_pair">Hidden pair</string>
+    <string name="technique_naked_triple">Naked triple</string>
+    <string name="technique_hidden_triple">Hidden triple</string>
+    <string name="technique_x_wing">X-Wing</string>
+    <string name="technique_xy_wing">XY-Wing</string>
+    <string name="technique_swordfish">Swordfish</string>
+
+    <string name="house_row">row %1$d</string>
+    <string name="house_column">column %1$d</string>
+    <string name="house_box">box %1$d</string>
+
+    <string name="step_pointing">%1$s: every spot for %2$d is in %3$s, so %2$d can\'t go anywhere else in %3$s.</string>
+    <string name="step_claiming">%1$s: every spot for %2$d is inside %3$s, so %2$d can\'t go anywhere else in %3$s.</string>
+    <string name="step_naked_pair">%1$s: two cells can only be %2$d or %3$d, so no other cell there can be %2$d or %3$d.</string>
+    <string name="step_naked_triple">%1$s: three cells can only be %2$d, %3$d or %4$d, so no other cell there can be one of them.</string>
+    <string name="step_hidden_pair">%1$s: %2$d and %3$d fit only in the same two cells, so those cells can\'t be anything else.</string>
+    <string name="step_hidden_triple">%1$s: %2$d, %3$d and %4$d fit only in the same three cells, so those cells can\'t be anything else.</string>
+    <string name="step_x_wing_rows">In rows %1$d and %2$d, %3$d fits only in columns %4$d and %5$d, so %3$d can\'t go anywhere else in those columns.</string>
+    <string name="step_x_wing_columns">In columns %1$d and %2$d, %3$d fits only in rows %4$d and %5$d, so %3$d can\'t go anywhere else in those rows.</string>
+    <string name="step_swordfish_rows">In rows %1$d, %2$d and %3$d, %4$d fits only in columns %5$d, %6$d and %7$d, so %4$d can\'t go anywhere else in those columns.</string>
+    <string name="step_swordfish_columns">In columns %1$d, %2$d and %3$d, %4$d fits only in rows %5$d, %6$d and %7$d, so %4$d can\'t go anywhere else in those rows.</string>
+    <string name="step_xy_wing">A cell that can only be %1$d or %2$d sees one cell that is %1$d or %3$d, and another that is %2$d or %3$d. Either way, one of those two is %3$d, so %3$d can\'t go in any cell that sees both.</string>
+    <string name="hint_then_naked_single">That leaves only %1$d for the highlighted cell.</string>
+    <string name="hint_then_hidden_single">That leaves only one spot for %1$d in %2$s: the highlighted cell.</string>
+    <string name="hint_show_steps">Show steps</string>
+    <string name="hint_hide_steps">Hide steps</string>
 </resources>

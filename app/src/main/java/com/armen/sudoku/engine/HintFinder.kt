@@ -2,11 +2,10 @@ package com.armen.sudoku.engine
 
 enum class HintKind { FIX_MISTAKE, NAKED_SINGLE, HIDDEN_SINGLE, REVEAL }
 
-enum class HintUnit { ROW, COLUMN, BOX }
-
 /**
  * A suggested move: put [value] in [cell]. The UI turns [kind] and the extra fields into a
  * localized explanation: [wrongValue] for FIX_MISTAKE, [unit] and [unitIndex] (0-based) for HIDDEN_SINGLE.
+ * [steps] are the eliminations (pairs, pointing, X-Wing…) that had to happen before this move was possible.
  */
 data class Hint(
     val cell: Int,
@@ -15,15 +14,18 @@ data class Hint(
     val wrongValue: Int = 0,
     val unit: HintUnit? = null,
     val unitIndex: Int = 0,
-)
+    val steps: List<Step> = emptyList(),
+) {
+    /** Cells that make up the patterns in [steps], for highlighting on the board. */
+    val patternCells: Set<Int> get() = steps.flatMapTo(HashSet()) { it.cells }
+}
 
 /**
  * Finds the most helpful next move, in this order:
  * 1. a wrong entry the player should fix,
- * 2. a cell where only one number fits (naked single),
- * 3. a number that has only one possible spot in a row, column or box (hidden single),
+ * 2. a single (only one number fits a cell, or a number has only one spot) in the selected cell,
+ * 3. the simplest logical move anywhere, including the eliminations it needs,
  * 4. otherwise, reveals the empty cell with the fewest options.
- * The player's selected cell is preferred whenever it qualifies.
  */
 object HintFinder {
 
@@ -35,37 +37,46 @@ object HintFinder {
 
         val empty = (0 until Sudoku.CELLS).filter { current[it] == 0 }
         if (empty.isEmpty()) return null
-        val candidates = IntArray(Sudoku.CELLS) { Sudoku.candidates(current, it) }
 
-        fun nakedSingle(cell: Int): Hint? {
-            if (current[cell] != 0 || Integer.bitCount(candidates[cell]) != 1) return null
-            return Hint(cell, Integer.numberOfTrailingZeros(candidates[cell]), HintKind.NAKED_SINGLE)
-        }
+        selected?.takeIf { current[it] == 0 }?.let { sel -> singleAt(current, sel)?.let { return it } }
 
-        fun hiddenSingle(cell: Int): Hint? {
-            if (current[cell] != 0) return null
-            val units = listOf(
-                Triple(HintUnit.ROW, Sudoku.row(cell), Sudoku.ROWS[Sudoku.row(cell)]),
-                Triple(HintUnit.COLUMN, Sudoku.col(cell), Sudoku.COLS[Sudoku.col(cell)]),
-                Triple(HintUnit.BOX, Sudoku.box(cell), Sudoku.BOXES[Sudoku.box(cell)]),
+        LogicSolver.nextPlacement(current)?.let { d ->
+            val p = d.placement
+            val house = p.houses.firstOrNull()
+            return Hint(
+                cell = p.cell,
+                value = p.value,
+                kind = if (p.technique == Technique.NAKED_SINGLE) HintKind.NAKED_SINGLE else HintKind.HIDDEN_SINGLE,
+                unit = house?.type,
+                unitIndex = house?.index ?: 0,
+                steps = d.steps,
             )
-            for (d in Sudoku.digitsOf(candidates[cell])) {
-                val bit = 1 shl d
-                for ((unit, index, cells) in units) {
-                    if (cells.none { it != cell && candidates[it] and bit != 0 }) {
-                        return Hint(cell, d, HintKind.HIDDEN_SINGLE, unit = unit, unitIndex = index)
-                    }
-                }
-            }
-            return null
         }
-
-        selected?.let { sel -> (nakedSingle(sel) ?: hiddenSingle(sel))?.let { return it } }
-        empty.firstNotNullOfOrNull(::nakedSingle)?.let { return it }
-        empty.firstNotNullOfOrNull(::hiddenSingle)?.let { return it }
 
         val cell = selected?.takeIf { current[it] == 0 }
-            ?: empty.minBy { Integer.bitCount(candidates[it]) }
+            ?: empty.minBy { Integer.bitCount(Sudoku.candidates(current, it)) }
         return Hint(cell, solution[cell], HintKind.REVEAL)
+    }
+
+    /** A naked or hidden single in [cell] that needs no eliminations, if there is one. */
+    private fun singleAt(current: IntArray, cell: Int): Hint? {
+        val mask = Sudoku.candidates(current, cell)
+        if (Integer.bitCount(mask) == 1) {
+            return Hint(cell, Integer.numberOfTrailingZeros(mask), HintKind.NAKED_SINGLE)
+        }
+        val houses = listOf(
+            House(HintUnit.ROW, Sudoku.row(cell)),
+            House(HintUnit.COLUMN, Sudoku.col(cell)),
+            House(HintUnit.BOX, Sudoku.box(cell)),
+        )
+        for (d in Sudoku.digitsOf(mask)) {
+            val bit = 1 shl d
+            for (house in houses) {
+                if (house.cells.none { it != cell && Sudoku.candidates(current, it) and bit != 0 }) {
+                    return Hint(cell, d, HintKind.HIDDEN_SINGLE, unit = house.type, unitIndex = house.index)
+                }
+            }
+        }
+        return null
     }
 }

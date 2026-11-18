@@ -3,6 +3,7 @@ package com.armen.sudoku.engine
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 class HintFinderTest {
 
@@ -37,5 +38,27 @@ class HintFinderTest {
             current[hint.cell] = hint.value
         }
         assertNull(HintFinder.find(current, solution))
+    }
+
+    @Test
+    fun hintsSolveHardPuzzlesAndExplainEliminations() {
+        val random = kotlin.random.Random(5)
+        var explained = 0
+        repeat(30) {
+            val (puzzle, answer) = minimalPuzzle(random)
+            val current = puzzle.copyOf()
+            while (true) {
+                val hint = HintFinder.find(current, answer) ?: break
+                assertEquals(answer[hint.cell], hint.value)
+                assertEquals(0, current[hint.cell], "hints only fill empty cells")
+                if (hint.steps.isNotEmpty()) {
+                    explained++
+                    assertTrue(hint.patternCells.isNotEmpty())
+                }
+                current[hint.cell] = hint.value
+            }
+            assertTrue(current.contentEquals(answer))
+        }
+        assertTrue(explained > 0, "some hints should need eliminations")
     }
 }
